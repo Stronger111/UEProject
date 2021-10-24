@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\LearnCPP.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{BAE0DAF4-D736-488A-8052-37E7B022D3F3}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\LearnCPP.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\LearnCPPEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{117D78AB-A524-4B8B-9AEA-D402B0CC19DA}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\LearnCPP">
+      <UniqueIdentifier>{F1A32C9E-6F75-462D-A644-5121807E69CA}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\LearnCPP\LearnCPP.Build.cs">
+      <Filter>Source\LearnCPP</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\LearnCPP\LearnCPP.cpp">
+      <Filter>Source\LearnCPP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LearnCPP\LearnCPP.h">
+      <Filter>Source\LearnCPP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LearnCPP\LearnCPPCharacter.cpp">
+      <Filter>Source\LearnCPP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LearnCPP\LearnCPPCharacter.h">
+      <Filter>Source\LearnCPP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LearnCPP\LearnCPPGameMode.cpp">
+      <Filter>Source\LearnCPP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LearnCPP\LearnCPPGameMode.h">
+      <Filter>Source\LearnCPP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LearnCPP\LearnCPPHUD.cpp">
+      <Filter>Source\LearnCPP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LearnCPP\LearnCPPHUD.h">
+      <Filter>Source\LearnCPP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LearnCPP\LearnCPPProjectile.cpp">
+      <Filter>Source\LearnCPP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LearnCPP\LearnCPPProjectile.h">
+      <Filter>Source\LearnCPP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LearnCPP\TargetStaticMeshActor.cpp">
+      <Filter>Source\LearnCPP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LearnCPP\TargetStaticMeshActor.h">
+      <Filter>Source\LearnCPP</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

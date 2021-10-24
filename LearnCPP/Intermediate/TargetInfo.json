@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "LearnCPP",
+			"Path": "D:\\Project\\GitHubProject\\UEProject\\LearnCPP\\Source\\LearnCPP.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "LearnCPPEditor",
+			"Path": "D:\\Project\\GitHubProject\\UEProject\\LearnCPP\\Source\\LearnCPPEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
