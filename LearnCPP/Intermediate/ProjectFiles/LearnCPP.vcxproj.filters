@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <None Include="..\..\LearnCPP.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{BAE0DAF4-D736-488A-8052-37E7B022D3F3}</UniqueIdentifier>
+      <UniqueIdentifier>{B6D447A4-1AA6-496A-A256-ED132B7A1D66}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\LearnCPP.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{117D78AB-A524-4B8B-9AEA-D402B0CC19DA}</UniqueIdentifier>
+      <UniqueIdentifier>{1801BB9E-3E58-46AC-A1EF-8BB008C3E727}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\LearnCPP">
-      <UniqueIdentifier>{F1A32C9E-6F75-462D-A644-5121807E69CA}</UniqueIdentifier>
+      <UniqueIdentifier>{1CAD500D-CB3C-4071-8CB3-AB80765A661B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\LearnCPP\LearnCPP.Build.cs">
       <Filter>Source\LearnCPP</Filter>

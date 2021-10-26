@@ -2,6 +2,7 @@
 
 
 #include "TargetStaticMeshActor.h"
+#include "LearnCPPProjectile.h"
 
 ATargetStaticMeshActor::ATargetStaticMeshActor()
 {
@@ -12,7 +13,16 @@ void ATargetStaticMeshActor::NotifyHit(UPrimitiveComponent * MyComp, AActor * Ot
 {
 	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
 	if (Other == nullptr)return;
-	//¥Ú”°»’÷æ
+	ALearnCPPProjectile* projectile = Cast<ALearnCPPProjectile>(Other);
+	if (projectile!=nullptr)
+	{
+
+	}
+	else
+	{
+
+	}
+	//ÊâìÂç∞Êó•Âøó
 	if (GEngine)
 		GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Yellow,TEXT("NotifyHit"));
 }
