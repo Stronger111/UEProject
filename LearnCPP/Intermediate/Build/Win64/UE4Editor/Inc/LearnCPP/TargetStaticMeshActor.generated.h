@@ -14,8 +14,16 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define LEARNCPP_TargetStaticMeshActor_generated_h
 
 #define LearnCPP_Source_LearnCPP_TargetStaticMeshActor_h_15_SPARSE_DATA
-#define LearnCPP_Source_LearnCPP_TargetStaticMeshActor_h_15_RPC_WRAPPERS
-#define LearnCPP_Source_LearnCPP_TargetStaticMeshActor_h_15_RPC_WRAPPERS_NO_PURE_DECLS
+#define LearnCPP_Source_LearnCPP_TargetStaticMeshActor_h_15_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execNotifyHitCallback);
+
+
+#define LearnCPP_Source_LearnCPP_TargetStaticMeshActor_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execNotifyHitCallback);
+
+
 #define LearnCPP_Source_LearnCPP_TargetStaticMeshActor_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesATargetStaticMeshActor(); \

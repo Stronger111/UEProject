@@ -13,7 +13,17 @@ UCLASS()
 class LEARNCPP_API ATargetStaticMeshActor : public AStaticMeshActor
 {
 	GENERATED_BODY()
+		
+	UFUNCTION()
+	void NotifyHitCallback();
 public:
+
+	UPROPERTY(EditDefaultsOnly,Category="TargetSetting")
+	UMaterialInterface* TargetRed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TargetSetting")
+	UMaterialInterface* Original;
+
 	ATargetStaticMeshActor();
 
 	virtual void NotifyHit(class UPrimitiveComponent* MyComp, 

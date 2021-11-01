@@ -3,3 +3,8 @@ D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Source\LearnCPP\TargetStat
 D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/StaticMeshActor.h
 D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\StaticMeshActor.generated.h
 D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Inc\LearnCPP\TargetStaticMeshActor.generated.h
+D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Source\LearnCPP\LearnCPPProjectile.h
+D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Inc\LearnCPP\LearnCPPProjectile.generated.h
+D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Engine\Classes\Kismet/KismetSystemLibrary.h
+D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/PropertyAccessUtil.h
+D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetSystemLibrary.generated.h
