@@ -16,6 +16,11 @@ class LEARNCPP_API ATargetStaticMeshActor : public AStaticMeshActor
 		
 	UFUNCTION()
 	void NotifyHitCallback();
+
+	UFUNCTION()
+    void TickCallback();
+
+	FVector Direction;
 public:
 
 	UPROPERTY(EditDefaultsOnly,Category="TargetSetting")
@@ -31,4 +36,6 @@ public:
 		FVector HitLocation, FVector HitNormal, FVector NormalImpulse,
 		const FHitResult& Hit) override;
 
+	virtual void Tick(float DeltaSeconds) override ;
+	 
 };

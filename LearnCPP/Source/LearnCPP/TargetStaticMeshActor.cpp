@@ -4,6 +4,7 @@
 #include "TargetStaticMeshActor.h"
 #include "LearnCPPProjectile.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
 
 
 void ATargetStaticMeshActor::NotifyHitCallback()
@@ -12,9 +13,15 @@ void ATargetStaticMeshActor::NotifyHitCallback()
 	staticMesh->SetMaterial(0,Original);
 }
 
+void ATargetStaticMeshActor::TickCallback()
+{
+	Direction *= -1;
+}
+
 ATargetStaticMeshActor::ATargetStaticMeshActor()
 {
-	
+	PrimaryActorTick.bCanEverTick = true;
+	Direction = FVector(0,-10,0);
 }
 
 void ATargetStaticMeshActor::NotifyHit(UPrimitiveComponent * MyComp, AActor * Other, UPrimitiveComponent * OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult & Hit)
@@ -44,4 +51,18 @@ void ATargetStaticMeshActor::NotifyHit(UPrimitiveComponent * MyComp, AActor * Ot
 	//打印日志
 	if (GEngine)
 		GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Yellow,TEXT("NotifyHit"));
+}
+
+void ATargetStaticMeshActor::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	//归一化向量
+	AddActorLocalOffset(UKismetMathLibrary::Normal(Direction)* DeltaSeconds*200);
+
+	FLatentActionInfo LatentInfo;
+	LatentInfo.Linkage = 0;
+	LatentInfo.CallbackTarget = this;
+	LatentInfo.ExecutionFunction = "TickCallback";
+	LatentInfo.UUID = __LINE__;
+	UKismetSystemLibrary::Delay(GetWorld(), 3.0f, LatentInfo);
 }

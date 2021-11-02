@@ -19,6 +19,13 @@ void EmptyLinkFunctionForGeneratedCodeTargetStaticMeshActor() {}
 	UPackage* Z_Construct_UPackage__Script_LearnCPP();
 	ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ATargetStaticMeshActor::execTickCallback)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->TickCallback();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ATargetStaticMeshActor::execNotifyHitCallback)
 	{
 		P_FINISH;
@@ -31,6 +38,7 @@ void EmptyLinkFunctionForGeneratedCodeTargetStaticMeshActor() {}
 		UClass* Class = ATargetStaticMeshActor::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "NotifyHitCallback", &ATargetStaticMeshActor::execNotifyHitCallback },
+			{ "TickCallback", &ATargetStaticMeshActor::execTickCallback },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -53,6 +61,28 @@ void EmptyLinkFunctionForGeneratedCodeTargetStaticMeshActor() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATargetStaticMeshActor_NotifyHitCallback_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ATargetStaticMeshActor_TickCallback_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATargetStaticMeshActor_TickCallback_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "TargetStaticMeshActor.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ATargetStaticMeshActor_TickCallback_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATargetStaticMeshActor, nullptr, "TickCallback", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATargetStaticMeshActor_TickCallback_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATargetStaticMeshActor_TickCallback_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATargetStaticMeshActor_TickCallback()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATargetStaticMeshActor_TickCallback_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -85,6 +115,7 @@ void EmptyLinkFunctionForGeneratedCodeTargetStaticMeshActor() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ATargetStaticMeshActor_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ATargetStaticMeshActor_NotifyHitCallback, "NotifyHitCallback" }, // 1922888025
+		{ &Z_Construct_UFunction_ATargetStaticMeshActor_TickCallback, "TickCallback" }, // 843857592
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATargetStaticMeshActor_Statics::Class_MetaDataParams[] = {
@@ -140,7 +171,7 @@ void EmptyLinkFunctionForGeneratedCodeTargetStaticMeshActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ATargetStaticMeshActor, 3134366878);
+	IMPLEMENT_CLASS(ATargetStaticMeshActor, 439065292);
 	template<> LEARNCPP_API UClass* StaticClass<ATargetStaticMeshActor>()
 	{
 		return ATargetStaticMeshActor::StaticClass();

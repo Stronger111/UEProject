@@ -16,11 +16,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define LearnCPP_Source_LearnCPP_TargetStaticMeshActor_h_15_SPARSE_DATA
 #define LearnCPP_Source_LearnCPP_TargetStaticMeshActor_h_15_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execTickCallback); \
 	DECLARE_FUNCTION(execNotifyHitCallback);
 
 
 #define LearnCPP_Source_LearnCPP_TargetStaticMeshActor_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execTickCallback); \
 	DECLARE_FUNCTION(execNotifyHitCallback);
 
 
