@@ -7,6 +7,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "MotionControllerComponent.h"
@@ -136,6 +137,10 @@ void ALearnCPPCharacter::SetupPlayerInputComponent(class UInputComponent* Player
 	PlayerInputComponent->BindAxis("TurnRate", this, &ALearnCPPCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ALearnCPPCharacter::LookUpAtRate);
+
+	// Bind sprint events
+	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &ALearnCPPCharacter::SprintBegin);
+	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &ALearnCPPCharacter::StopSprint);
 }
 
 void ALearnCPPCharacter::OnFire()
@@ -282,6 +287,16 @@ void ALearnCPPCharacter::LookUpAtRate(float Rate)
 {
 	// calculate delta for this frame from the rate information
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
+}
+
+void ALearnCPPCharacter::SprintBegin()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 2200;
+}
+
+void ALearnCPPCharacter::StopSprint()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 600;
 }
 
 bool ALearnCPPCharacter::EnableTouchscreenMovement(class UInputComponent* PlayerInputComponent)

@@ -112,6 +112,10 @@ protected:
 	 */
 	void LookUpAtRate(float Rate);
 
+	void SprintBegin();
+
+	void StopSprint();
+
 	struct TouchData
 	{
 		TouchData() { bIsPressed = false;Location=FVector::ZeroVector;}
