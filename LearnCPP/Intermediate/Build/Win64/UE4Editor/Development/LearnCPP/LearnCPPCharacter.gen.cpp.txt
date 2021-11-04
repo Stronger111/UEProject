@@ -8,4 +8,6 @@ D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Ch
 D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
 D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
 D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
+D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/TimelineComponent.h
+D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TimelineComponent.generated.h
 D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Inc\LearnCPP\LearnCPPCharacter.generated.h

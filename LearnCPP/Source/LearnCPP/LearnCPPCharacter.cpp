@@ -104,6 +104,15 @@ void ALearnCPPCharacter::BeginPlay()
 		VR_Gun->SetHiddenInGame(true, true);
 		Mesh1P->SetHiddenInGame(false, true);
 	}
+	//Callback 时间线
+	FOnTimelineFloatStatic OnTimelineCallback;
+	OnTimelineCallback.BindUFunction(this,TEXT("DoZoom"));
+	ZoomTimeline.AddInterpFloat(FloatCurve, OnTimelineCallback);
+}
+
+void ALearnCPPCharacter::DoZoom(float FieldOfView)
+{
+	FirstPersonCameraComponent->FieldOfView = FieldOfView;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -141,6 +150,10 @@ void ALearnCPPCharacter::SetupPlayerInputComponent(class UInputComponent* Player
 	// Bind sprint events
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &ALearnCPPCharacter::SprintBegin);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &ALearnCPPCharacter::StopSprint);
+
+	//Bind Zoom events
+	PlayerInputComponent->BindAction("Zoom", IE_Pressed, this, &ALearnCPPCharacter::ZoomBegin);
+	PlayerInputComponent->BindAction("Zoom", IE_Released, this, &ALearnCPPCharacter::ZoomEnd);
 }
 
 void ALearnCPPCharacter::OnFire()
@@ -298,6 +311,21 @@ void ALearnCPPCharacter::StopSprint()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 600;
 }
+
+void ALearnCPPCharacter::ZoomBegin()
+{
+	//FirstPersonCameraComponent->FieldOfView = 45.0f;
+	ZoomTimeline.Play();
+
+}
+
+void ALearnCPPCharacter::ZoomEnd()
+{
+	//FirstPersonCameraComponent->FieldOfView = 90.0f;
+	ZoomTimeline.Reverse();
+}
+
+
 
 bool ALearnCPPCharacter::EnableTouchscreenMovement(class UInputComponent* PlayerInputComponent)
 {

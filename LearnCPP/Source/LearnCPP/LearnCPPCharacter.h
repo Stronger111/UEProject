@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/TimelineComponent.h"
 #include "LearnCPPCharacter.generated.h"
 
 class UInputComponent;
@@ -115,6 +116,19 @@ protected:
 	void SprintBegin();
 
 	void StopSprint();
+
+	void ZoomBegin();
+
+	void ZoomEnd();
+
+	//实现曲线TimeLine
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UCurveFloat* FloatCurve;
+
+	FTimeline ZoomTimeline;
+
+	UFUNCTION()
+	void DoZoom(float FieldOfView);
 
 	struct TouchData
 	{

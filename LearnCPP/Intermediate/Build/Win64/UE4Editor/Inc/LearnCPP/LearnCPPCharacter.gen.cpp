@@ -27,8 +27,53 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ALearnCPPCharacter::execDoZoom)
+	{
+		P_GET_PROPERTY(FFloatProperty,Z_Param_FieldOfView);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DoZoom(Z_Param_FieldOfView);
+		P_NATIVE_END;
+	}
 	void ALearnCPPCharacter::StaticRegisterNativesALearnCPPCharacter()
 	{
+		UClass* Class = ALearnCPPCharacter::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "DoZoom", &ALearnCPPCharacter::execDoZoom },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics
+	{
+		struct LearnCPPCharacter_eventDoZoom_Parms
+		{
+			float FieldOfView;
+		};
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_FieldOfView;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::NewProp_FieldOfView = { "FieldOfView", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(LearnCPPCharacter_eventDoZoom_Parms, FieldOfView), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::NewProp_FieldOfView,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ALearnCPPCharacter, nullptr, "DoZoom", nullptr, nullptr, sizeof(LearnCPPCharacter_eventDoZoom_Parms), Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ALearnCPPCharacter_DoZoom()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_ALearnCPPCharacter_NoRegister()
 	{
@@ -37,6 +82,7 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 	struct Z_Construct_UClass_ALearnCPPCharacter_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -108,6 +154,9 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 	UObject* (*const Z_Construct_UClass_ALearnCPPCharacter_Statics::DependentSingletons[])() = {
 		(UObject* (*)())Z_Construct_UClass_ACharacter,
 		(UObject* (*)())Z_Construct_UPackage__Script_LearnCPP,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_ALearnCPPCharacter_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ALearnCPPCharacter_DoZoom, "DoZoom" }, // 4220430720
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALearnCPPCharacter_Statics::Class_MetaDataParams[] = {
@@ -291,11 +340,11 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 		"Game",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_ALearnCPPCharacter_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_ALearnCPPCharacter_Statics::PropPointers),
 		0,
 		0x008000A4u,
@@ -310,7 +359,7 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ALearnCPPCharacter, 2212298192);
+	IMPLEMENT_CLASS(ALearnCPPCharacter, 4159493120);
 	template<> LEARNCPP_API UClass* StaticClass<ALearnCPPCharacter>()
 	{
 		return ALearnCPPCharacter::StaticClass();
