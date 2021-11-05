@@ -20,6 +20,7 @@ DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
 ALearnCPPCharacter::ALearnCPPCharacter()
 {
+	PrimaryActorTick.bCanEverTick = true;
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -104,6 +105,10 @@ void ALearnCPPCharacter::BeginPlay()
 		VR_Gun->SetHiddenInGame(true, true);
 		Mesh1P->SetHiddenInGame(false, true);
 	}
+	//托管内存防止遗忘释放内存
+	FloatCurve = NewObject<UCurveFloat>();
+	FloatCurve->FloatCurve.AddKey(0.0f,90.0f);
+	FloatCurve->FloatCurve.AddKey(0.3f,45.0f);
 	//Callback 时间线
 	FOnTimelineFloatStatic OnTimelineCallback;
 	OnTimelineCallback.BindUFunction(this,TEXT("DoZoom"));
@@ -112,7 +117,7 @@ void ALearnCPPCharacter::BeginPlay()
 
 void ALearnCPPCharacter::DoZoom(float FieldOfView)
 {
-	FirstPersonCameraComponent->FieldOfView = FieldOfView;
+	FirstPersonCameraComponent->SetFieldOfView(FieldOfView);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -340,4 +345,11 @@ bool ALearnCPPCharacter::EnableTouchscreenMovement(class UInputComponent* Player
 	}
 	
 	return false;
+}
+
+void ALearnCPPCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	ZoomTimeline.TickTimeline(DeltaSeconds);
 }

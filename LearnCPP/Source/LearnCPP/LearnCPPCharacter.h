@@ -122,7 +122,7 @@ protected:
 	void ZoomEnd();
 
 	//实现曲线TimeLine
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	/*UPROPERTY(EditAnywhere,BlueprintReadWrite)*/
 	UCurveFloat* FloatCurve;
 
 	FTimeline ZoomTimeline;
@@ -161,6 +161,8 @@ public:
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
+	virtual void Tick(float DeltaSeconds) override;
 
 };
 
