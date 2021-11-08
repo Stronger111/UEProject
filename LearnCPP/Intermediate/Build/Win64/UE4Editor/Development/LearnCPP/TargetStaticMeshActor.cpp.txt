@@ -11,3 +11,9 @@ D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Ki
 D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
 D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetMathLibrary.generated.h
 D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl
+D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
+D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Engine\Classes\Sound/DialogueTypes.h
+D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DialogueTypes.generated.h
+D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
+D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
+D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h

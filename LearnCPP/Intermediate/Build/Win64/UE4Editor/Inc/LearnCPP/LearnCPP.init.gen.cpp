@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPP_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xD2BC04CC,
+				0x0EC11608,
 				0xF537D71F,
 				METADATA_PARAMS(nullptr, 0)
 			};

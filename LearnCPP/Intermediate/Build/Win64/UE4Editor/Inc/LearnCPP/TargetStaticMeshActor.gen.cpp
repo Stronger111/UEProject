@@ -18,6 +18,8 @@ void EmptyLinkFunctionForGeneratedCodeTargetStaticMeshActor() {}
 	ENGINE_API UClass* Z_Construct_UClass_AStaticMeshActor();
 	UPackage* Z_Construct_UPackage__Script_LearnCPP();
 	ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ATargetStaticMeshActor::execTickCallback)
 	{
@@ -105,6 +107,14 @@ void EmptyLinkFunctionForGeneratedCodeTargetStaticMeshActor() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Original_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Original;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ExplosionSound_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ExplosionSound;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ExplosionEffect_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ExplosionEffect;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -140,9 +150,25 @@ void EmptyLinkFunctionForGeneratedCodeTargetStaticMeshActor() {}
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_Original = { "Original", nullptr, (EPropertyFlags)0x0010000000010001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATargetStaticMeshActor, Original), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_Original_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_Original_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionSound_MetaData[] = {
+		{ "Category", "TargetSetting" },
+		{ "ModuleRelativePath", "TargetStaticMeshActor.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionSound = { "ExplosionSound", nullptr, (EPropertyFlags)0x0010000000010001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATargetStaticMeshActor, ExplosionSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionSound_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionEffect_MetaData[] = {
+		{ "Category", "TargetSetting" },
+		{ "ModuleRelativePath", "TargetStaticMeshActor.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionEffect = { "ExplosionEffect", nullptr, (EPropertyFlags)0x0010000000010001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATargetStaticMeshActor, ExplosionEffect), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionEffect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionEffect_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ATargetStaticMeshActor_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_TargetRed,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_Original,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionSound,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATargetStaticMeshActor_Statics::NewProp_ExplosionEffect,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ATargetStaticMeshActor_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ATargetStaticMeshActor>::IsAbstract,
@@ -171,7 +197,7 @@ void EmptyLinkFunctionForGeneratedCodeTargetStaticMeshActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ATargetStaticMeshActor, 439065292);
+	IMPLEMENT_CLASS(ATargetStaticMeshActor, 714221632);
 	template<> LEARNCPP_API UClass* StaticClass<ATargetStaticMeshActor>()
 	{
 		return ATargetStaticMeshActor::StaticClass();

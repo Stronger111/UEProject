@@ -21,6 +21,8 @@ class LEARNCPP_API ATargetStaticMeshActor : public AStaticMeshActor
     void TickCallback();
 
 	FVector Direction;
+	//是否被攻击过
+	bool IsPrimed;
 public:
 
 	UPROPERTY(EditDefaultsOnly,Category="TargetSetting")
@@ -28,6 +30,12 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "TargetSetting")
 	UMaterialInterface* Original;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TargetSetting")
+	USoundBase* ExplosionSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TargetSetting")
+    UParticleSystem* ExplosionEffect;
 
 	ATargetStaticMeshActor();
 
