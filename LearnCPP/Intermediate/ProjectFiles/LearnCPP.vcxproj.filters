@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\LearnCPP.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{B6D447A4-1AA6-496A-A256-ED132B7A1D66}</UniqueIdentifier>
+      <UniqueIdentifier>{555158BA-6467-48B3-BC57-0D289A068423}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\LearnCPP.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{1801BB9E-3E58-46AC-A1EF-8BB008C3E727}</UniqueIdentifier>
+      <UniqueIdentifier>{3B91391B-DC75-4691-A96E-F720C3017C0A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\LearnCPP">
-      <UniqueIdentifier>{1CAD500D-CB3C-4071-8CB3-AB80765A661B}</UniqueIdentifier>
+      <UniqueIdentifier>{FF3DC2FD-9DCD-41A9-9BF7-A43F80A71102}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\LearnCPP\LearnCPP.Build.cs">
       <Filter>Source\LearnCPP</Filter>
@@ -63,6 +63,12 @@
       <Filter>Source\LearnCPP</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\LearnCPP\LearnCPPProjectile.h">
+      <Filter>Source\LearnCPP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LearnCPP\MyUserWidget.cpp">
+      <Filter>Source\LearnCPP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LearnCPP\MyUserWidget.h">
       <Filter>Source\LearnCPP</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\LearnCPP\TargetStaticMeshActor.cpp">

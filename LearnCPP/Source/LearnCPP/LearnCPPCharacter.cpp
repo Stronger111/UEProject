@@ -12,6 +12,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "MotionControllerComponent.h"
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
+#include "Blueprint/UserWidget.h"
+#include "MyUserWidget.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -113,6 +115,9 @@ void ALearnCPPCharacter::BeginPlay()
 	FOnTimelineFloatStatic OnTimelineCallback;
 	OnTimelineCallback.BindUFunction(this,TEXT("DoZoom"));
 	ZoomTimeline.AddInterpFloat(FloatCurve, OnTimelineCallback);
+
+	//加载UI
+	//CreateWidget<UMyUserWidget>(GetWorld(),);
 }
 
 void ALearnCPPCharacter::DoZoom(float FieldOfView)
