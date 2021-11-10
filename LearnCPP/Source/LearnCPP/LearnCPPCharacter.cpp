@@ -13,6 +13,7 @@
 #include "MotionControllerComponent.h"
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
 #include "Blueprint/UserWidget.h"
+#include "Components/ProgressBar.h"
 #include "MyUserWidget.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
@@ -115,9 +116,21 @@ void ALearnCPPCharacter::BeginPlay()
 	FOnTimelineFloatStatic OnTimelineCallback;
 	OnTimelineCallback.BindUFunction(this,TEXT("DoZoom"));
 	ZoomTimeline.AddInterpFloat(FloatCurve, OnTimelineCallback);
-
-	//加载UI
-	//CreateWidget<UMyUserWidget>(GetWorld(),);
+	//Create UI
+	if (WidgetClass)
+	{
+		//加载UI
+		HUD = CreateWidget<UMyUserWidget>(GetWorld(), WidgetClass);
+		if (HUD)
+		{
+			HUD->AddToViewport();
+			if (HUD->HealthBar)
+			{
+				HUD->HealthBar->SetPercent(0.1f);
+			}
+		}
+	}
+	
 }
 
 void ALearnCPPCharacter::DoZoom(float FieldOfView)

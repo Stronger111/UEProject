@@ -8,6 +8,7 @@
 #include "LearnCPPCharacter.generated.h"
 
 class UInputComponent;
+class UMyUserWidget;
 class USkeletalMeshComponent;
 class USceneComponent;
 class UCameraComponent;
@@ -52,8 +53,12 @@ class ALearnCPPCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UMotionControllerComponent* L_MotionController;
 
+	UMyUserWidget* HUD;
 public:
 	ALearnCPPCharacter();
+    
+	UPROPERTY(EditDefaultsOnly, Category = UI)
+	TSubclassOf<UMyUserWidget> WidgetClass;
 
 protected:
 	virtual void BeginPlay();
