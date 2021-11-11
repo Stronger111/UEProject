@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "MyUserWidget.generated.h"
 class UProgressBar;  //节约编译时间
+class UTextBlock;
 /**
  * 
  */
@@ -16,4 +17,13 @@ class LEARNCPP_API UMyUserWidget : public UUserWidget
 public:
 	UPROPERTY()
 	UProgressBar *HealthBar;
+
+	UPROPERTY()
+	UProgressBar *StaminaBar;
+
+	UPROPERTY()
+	UTextBlock* KilledText;
+
+	UPROPERTY()
+	UTextBlock* AmmoText;
 };

@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define LEARNCPP_MyUserWidget_generated_h
 
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_SPARSE_DATA
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_RPC_WRAPPERS
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_RPC_WRAPPERS_NO_PURE_DECLS
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_INCLASS_NO_PURE_DECLS \
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_SPARSE_DATA
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_RPC_WRAPPERS
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_RPC_WRAPPERS_NO_PURE_DECLS
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUMyUserWidget(); \
 	friend struct Z_Construct_UClass_UMyUserWidget_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(UMyUserWidget)
 
 
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_INCLASS \
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_INCLASS \
 private: \
 	static void StaticRegisterNativesUMyUserWidget(); \
 	friend struct Z_Construct_UClass_UMyUserWidget_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(UMyUserWidget)
 
 
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_STANDARD_CONSTRUCTORS \
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UMyUserWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UMyUserWidget) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_ENHANCED_CONSTRUCTORS \
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UMyUserWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
@@ -60,28 +60,28 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UMyUserWidget)
 
 
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_PRIVATE_PROPERTY_OFFSET
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_12_PROLOG
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_GENERATED_BODY_LEGACY \
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_PRIVATE_PROPERTY_OFFSET
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_13_PROLOG
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_PRIVATE_PROPERTY_OFFSET \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_SPARSE_DATA \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_RPC_WRAPPERS \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_INCLASS \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_STANDARD_CONSTRUCTORS \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_PRIVATE_PROPERTY_OFFSET \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_SPARSE_DATA \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_RPC_WRAPPERS \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_INCLASS \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define LearnCPP_Source_LearnCPP_MyUserWidget_h_15_GENERATED_BODY \
+#define LearnCPP_Source_LearnCPP_MyUserWidget_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_PRIVATE_PROPERTY_OFFSET \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_SPARSE_DATA \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_INCLASS_NO_PURE_DECLS \
-	LearnCPP_Source_LearnCPP_MyUserWidget_h_15_ENHANCED_CONSTRUCTORS \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_PRIVATE_PROPERTY_OFFSET \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_SPARSE_DATA \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_INCLASS_NO_PURE_DECLS \
+	LearnCPP_Source_LearnCPP_MyUserWidget_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

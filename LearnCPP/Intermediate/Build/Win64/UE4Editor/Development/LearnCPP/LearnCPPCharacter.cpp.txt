@@ -167,5 +167,9 @@ D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\UMG\Public\Components/ProgressBar
 D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\Slate\Public\Widgets/Notifications/SProgressBar.h
 D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Slate\SProgressBar.generated.h
 D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\ProgressBar.generated.h
+D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\UMG\Public\Components/TextBlock.h
+D:\UE4\Developer\UE_4.27\Engine\Source\Runtime\UMG\Public\Components/TextWidgetTypes.h
+D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\TextWidgetTypes.generated.h
+D:\UE4\Developer\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\TextBlock.generated.h
 D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Source\LearnCPP\MyUserWidget.h
 D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Inc\LearnCPP\MyUserWidget.generated.h

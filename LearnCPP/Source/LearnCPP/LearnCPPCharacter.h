@@ -54,6 +54,9 @@ class ALearnCPPCharacter : public ACharacter
 	UMotionControllerComponent* L_MotionController;
 
 	UMyUserWidget* HUD;
+	int Ammo;
+	void SetAmmo(int ammo);
+	int Killed;
 public:
 	ALearnCPPCharacter();
     
