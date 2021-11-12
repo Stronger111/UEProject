@@ -6,6 +6,7 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "LearnCPPCharacter.h"
 
 void ATargetStaticMeshActor::NotifyHitCallback()
 {
@@ -39,6 +40,14 @@ void ATargetStaticMeshActor::NotifyHit(UPrimitiveComponent * MyComp, AActor * Ot
 		{
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), ExplosionSound, HitLocation);
 			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionEffect, HitLocation);
+			//获取到玩家对象
+			ACharacter *character=UGameplayStatics::GetPlayerCharacter(GetWorld(),0);
+			if (character)
+			{
+				ALearnCPPCharacter* LearnCppCharacter = Cast<ALearnCPPCharacter>(character);
+				LearnCppCharacter->SetKilled(LearnCppCharacter->GetKilled()+1);
+			}
+
 			Destroy();
 		}
 		else

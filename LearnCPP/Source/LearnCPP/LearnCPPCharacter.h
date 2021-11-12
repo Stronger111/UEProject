@@ -63,6 +63,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = UI)
 	TSubclassOf<UMyUserWidget> WidgetClass;
 
+	int GetKilled();
+	void SetKilled(int killed);
+
 protected:
 	virtual void BeginPlay();
 

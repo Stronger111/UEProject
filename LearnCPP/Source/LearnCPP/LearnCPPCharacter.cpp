@@ -22,10 +22,6 @@ DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 //////////////////////////////////////////////////////////////////////////
 // ALearnCPPCharacter
 
-void ALearnCPPCharacter::SetAmmo(int ammo)
-{
-
-}
 
 ALearnCPPCharacter::ALearnCPPCharacter()
 {
@@ -94,7 +90,9 @@ ALearnCPPCharacter::ALearnCPPCharacter()
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
 	Ammo = 30;
+	Killed = 0;
 }
+
 
 void ALearnCPPCharacter::BeginPlay()
 {
@@ -138,11 +136,26 @@ void ALearnCPPCharacter::BeginPlay()
 			if (HUD->StaminaBar)
 				HUD->StaminaBar->SetPercent(1.0f);
 			if (HUD->KilledText)
-				HUD->KilledText->SetText(FText::FromString(FString::FromInt(0))); //头文件暂时不加
-			
+				HUD->KilledText->SetText(FText::FromString(FString::FromInt(Killed))); //头文件暂时不加
+			if (HUD->AmmoText)
+			{
+				HUD->AmmoText->SetText(FText::FromString(FString::FromInt(Ammo)));
+			}
 		}
 	}
 	
+}
+
+int ALearnCPPCharacter::GetKilled()
+{
+	return Killed;
+}
+
+void ALearnCPPCharacter::SetKilled(int killed)
+{
+	killed = killed;
+	if (HUD->KilledText)
+		HUD->KilledText->SetText(FText::FromString(FString::FromInt(killed))); //头文件暂时不加
 }
 
 void ALearnCPPCharacter::DoZoom(float FieldOfView)
@@ -191,6 +204,13 @@ void ALearnCPPCharacter::SetupPlayerInputComponent(class UInputComponent* Player
 	PlayerInputComponent->BindAction("Zoom", IE_Released, this, &ALearnCPPCharacter::ZoomEnd);
 }
 
+void ALearnCPPCharacter::SetAmmo(int ammo)
+{
+	Ammo = ammo;
+	if (HUD->AmmoText)
+		HUD->AmmoText->SetText(FText::FromString(FString::FromInt(Ammo)));
+}
+
 void ALearnCPPCharacter::OnFire()
 {
 	if (Ammo<=0)
@@ -198,9 +218,8 @@ void ALearnCPPCharacter::OnFire()
 		return;
 	}
 	//子弹数大于0
-	Ammo--;
-	if (HUD->AmmoText)
-		HUD->AmmoText->SetText(FText::FromString(FString::FromInt(Ammo)));
+	SetAmmo(Ammo-1);
+	
 	// try and fire a projectile
 	if (ProjectileClass != nullptr)
 	{
