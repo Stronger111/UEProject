@@ -26,4 +26,7 @@ public:
 
 	UPROPERTY()
 	UTextBlock* AmmoText;
+
+	UPROPERTY()
+    UTextBlock* TargetText;
 };

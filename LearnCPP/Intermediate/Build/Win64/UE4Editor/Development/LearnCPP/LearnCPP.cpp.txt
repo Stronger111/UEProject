@@ -1,2 +1,2 @@
-D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Development\LearnCPP\Definitions.LearnCPP.h
-D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Source\LearnCPP\LearnCPP.h
+D:\Project\GitHubProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Development\LearnCPP\Definitions.LearnCPP.h
+D:\Project\GitHubProject\UEProject\LearnCPP\Source\LearnCPP\LearnCPP.h

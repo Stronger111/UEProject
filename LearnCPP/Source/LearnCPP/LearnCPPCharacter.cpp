@@ -15,12 +15,24 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
+#include "Components/Button.h"
+#include "Components/PawnNoiseEmitterComponent.h"
+//#include "GameFramework/SaveGame.h"
+#include "SaveSystem.h"
+
+#include "TimerManager.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "MyUserWidget.h"
+#include "RoundTransWidget.h"
+#include "LoseMenuWidget.h"
+#include "PauseWidget.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
 //////////////////////////////////////////////////////////////////////////
 // ALearnCPPCharacter
+
+
 
 
 ALearnCPPCharacter::ALearnCPPCharacter()
@@ -91,6 +103,16 @@ ALearnCPPCharacter::ALearnCPPCharacter()
 	//bUsingMotionControllers = true;
 	Ammo = 30;
 	Killed = 0;
+	Target = 20;
+
+	StaminaCost = 0.1f;
+	IsSprinting = false;
+	StaminaRecharge = 0.05f;
+	//创建组件
+	PawnNoiseEmitter = CreateDefaultSubobject <UPawnNoiseEmitterComponent>(TEXT("PawnNoiseEmitter"));
+	CurrentEnemyNumber = 0;
+
+	SlotName = "LearnCpp01";
 }
 
 
@@ -115,12 +137,33 @@ void ALearnCPPCharacter::BeginPlay()
 	}
 	//托管内存防止遗忘释放内存
 	FloatCurve = NewObject<UCurveFloat>();
-	FloatCurve->FloatCurve.AddKey(0.0f,90.0f);
-	FloatCurve->FloatCurve.AddKey(0.3f,45.0f);
+	FloatCurve->FloatCurve.AddKey(0.0f, 90.0f);
+	FloatCurve->FloatCurve.AddKey(0.3f, 45.0f);
 	//Callback 时间线
 	FOnTimelineFloatStatic OnTimelineCallback;
-	OnTimelineCallback.BindUFunction(this,TEXT("DoZoom"));
+	OnTimelineCallback.BindUFunction(this, TEXT("DoZoom"));
 	ZoomTimeline.AddInterpFloat(FloatCurve, OnTimelineCallback);
+
+	//游戏的加载和保存
+	if (UGameplayStatics::DoesSaveGameExist(SlotName, 0))
+	{
+		SaveInstance = Cast<USaveSystem>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	}
+	else
+	{
+		//创建存档
+		SaveInstance = Cast<USaveSystem>(UGameplayStatics::CreateSaveGameObject(USaveSystem::StaticClass()));
+		SaveInstance->CurrentRound = 1;
+		/*	if(SaveInstance)
+			   Target = SaveInstance->CurrentRound * 2;*/
+			   //保存到磁盘上
+		if (SaveInstance)
+			UGameplayStatics::SaveGameToSlot(SaveInstance, SlotName, 0);
+	}
+	if (SaveInstance)
+	{
+		Target = SaveInstance->CurrentRound * 2;
+	}
 	//Create UI
 	if (WidgetClass)
 	{
@@ -141,9 +184,13 @@ void ALearnCPPCharacter::BeginPlay()
 			{
 				HUD->AmmoText->SetText(FText::FromString(FString::FromInt(Ammo)));
 			}
+			if (HUD && HUD->TargetText)
+			{
+				HUD->TargetText->SetText(FText::FromString(FString::FromInt(Target)));
+			}
 		}
 	}
-	
+
 }
 
 int ALearnCPPCharacter::GetKilled()
@@ -153,8 +200,8 @@ int ALearnCPPCharacter::GetKilled()
 
 void ALearnCPPCharacter::SetKilled(int killed)
 {
-	killed = killed;
-	if (HUD->KilledText)
+	Killed = killed;
+	if (HUD && HUD->KilledText)
 		HUD->KilledText->SetText(FText::FromString(FString::FromInt(killed))); //头文件暂时不加
 }
 
@@ -202,24 +249,128 @@ void ALearnCPPCharacter::SetupPlayerInputComponent(class UInputComponent* Player
 	//Bind Zoom events
 	PlayerInputComponent->BindAction("Zoom", IE_Pressed, this, &ALearnCPPCharacter::ZoomBegin);
 	PlayerInputComponent->BindAction("Zoom", IE_Released, this, &ALearnCPPCharacter::ZoomEnd);
+
+	PlayerInputComponent->BindAction("Pause", IE_Released, this, &ALearnCPPCharacter::Pause);
+	//非发布
+#if !UE_BUILD_SHIPPING
+	PlayerInputComponent->BindAction("dummy_pause", IE_Released, this, &ALearnCPPCharacter::Pause);
+#endif
 }
 
 void ALearnCPPCharacter::SetAmmo(int ammo)
 {
 	Ammo = ammo;
-	if (HUD->AmmoText)
+	if (HUD && HUD->AmmoText)
 		HUD->AmmoText->SetText(FText::FromString(FString::FromInt(Ammo)));
+}
+
+int ALearnCPPCharacter::GetAmmo()
+{
+	return Ammo;
+}
+
+void ALearnCPPCharacter::SetTarget(int target)
+{
+	Target = target;
+	if (HUD && HUD->TargetText)
+	{
+		HUD->TargetText->SetText(FText::FromString(FString::FromInt(Target)));
+	}
+}
+
+int ALearnCPPCharacter::GetTarget()
+{
+	return Target;
+}
+
+void ALearnCPPCharacter::RestartCallback()
+{
+	UGameplayStatics::OpenLevel(GetWorld(), FName(TEXT("FirstPersonExampleMap")));
+	if (IsLose)
+		LoseMenu->RemoveFromParent();
+	else
+		RoundTrans->RemoveFromParent();
+}
+
+void ALearnCPPCharacter::ExitCallback()
+{
+	UKismetSystemLibrary::QuitGame(GetWorld(), nullptr, EQuitPreference::Quit, false);
+}
+
+void ALearnCPPCharacter::EndGame()
+{
+	//暂停游戏
+	UGameplayStatics::SetGamePaused(GetWorld(), true);
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->bShowMouseCursor = true;
+	if (IsLose)
+	{
+		if (LoseMenuClass)
+		{
+			LoseMenu = CreateWidget<ULoseMenuWidget>(GetWorld(), LoseMenuClass);
+			if (LoseMenu)
+			{
+				LoseMenu->AddToViewport();
+				if (LoseMenu->RestartButton)
+				{
+					FScriptDelegate scriptDelegate;
+					scriptDelegate.BindUFunction(this, FName(TEXT("RestartCallback")));
+					LoseMenu->RestartButton->OnClicked.Add(scriptDelegate);
+				}
+
+				if (LoseMenu->ExitButton)
+				{
+					FScriptDelegate scriptDelegate;
+					scriptDelegate.BindUFunction(this, FName(TEXT("ExitCallback")));
+					LoseMenu->ExitButton->OnClicked.Add(scriptDelegate);
+				}
+			}
+		}
+	}
+	else
+	{
+		if (RoundTransClass)
+		{
+			//加载UI
+			RoundTrans = CreateWidget<URoundTransWidget>(GetWorld(), RoundTransClass);
+			if (RoundTrans)
+			{
+				RoundTrans->AddToViewport();
+				if (RoundTrans->StartButton)
+				{
+					FScriptDelegate scriptDelegate;
+					scriptDelegate.BindUFunction(this, FName(TEXT("RestartCallback")));
+					RoundTrans->StartButton->OnClicked.Add(scriptDelegate);
+				}
+
+				if (RoundTrans->ExitButton)
+				{
+					FScriptDelegate scriptDelegate;
+					scriptDelegate.BindUFunction(this, FName(TEXT("ExitCallback")));
+					RoundTrans->ExitButton->OnClicked.Add(scriptDelegate);
+				}
+				if (RoundTrans->RoundText)
+				{
+					if (SaveInstance)
+					{
+						++SaveInstance->CurrentRound;
+						UGameplayStatics::SaveGameToSlot(SaveInstance, SlotName, 0);
+					}
+					RoundTrans->RoundText->SetText(FText::FromString(FString::FromInt(SaveInstance->CurrentRound)));
+				}
+			}
+		}
+	}
 }
 
 void ALearnCPPCharacter::OnFire()
 {
-	if (Ammo<=0)
+	if (Ammo <= 0)
 	{
 		return;
 	}
 	//子弹数大于0
-	SetAmmo(Ammo-1);
-	
+	SetAmmo(Ammo - 1);
+
 	// try and fire a projectile
 	if (ProjectileClass != nullptr)
 	{
@@ -251,8 +402,11 @@ void ALearnCPPCharacter::OnFire()
 	// try and play the sound if specified
 	if (FireSound != nullptr)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation(), 0.2f); //设置下音量
 	}
+
+	//发出噪音
+	MakeNoise(1, nullptr, GetActorLocation());
 
 	// try and play a firing animation if specified
 	if (FireAnimation != nullptr)
@@ -363,15 +517,39 @@ void ALearnCPPCharacter::LookUpAtRate(float Rate)
 	// calculate delta for this frame from the rate information
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
+/// <summary>
+/// 消耗体力
+/// </summary>
+void ALearnCPPCharacter::SprintDrain()
+{
+	if (HUD && HUD->StaminaBar)
+	{
+		float newStamina = HUD->StaminaBar->Percent - StaminaCost;
+		HUD->StaminaBar->SetPercent(newStamina > 0 ? newStamina : 0);
+		//制造噪音
+		MakeNoise(1, nullptr, GetActorLocation());
+		if (newStamina <= 0)
+		{
+			StopSprint();
+		}
+	}
+}
 
 void ALearnCPPCharacter::SprintBegin()
 {
-	GetCharacterMovement()->MaxWalkSpeed = 2200;
+	if (HUD && HUD->StaminaBar && HUD->StaminaBar->Percent > StaminaCost)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 2200;
+		IsSprinting = true;
+		GetWorldTimerManager().SetTimer(SprintTimerHandle, this, &ALearnCPPCharacter::SprintDrain, 0.5f, true);
+	}
 }
 
 void ALearnCPPCharacter::StopSprint()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 600;
+	GetWorldTimerManager().ClearTimer(SprintTimerHandle);
+	IsSprinting = false;
 }
 
 void ALearnCPPCharacter::ZoomBegin()
@@ -387,7 +565,62 @@ void ALearnCPPCharacter::ZoomEnd()
 	ZoomTimeline.Reverse();
 }
 
+void ALearnCPPCharacter::Continue()
+{
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->bShowMouseCursor = false;
+	UGameplayStatics::SetGamePaused(GetWorld(), false);
+	PauseMenu->RemoveFromParent();
+}
 
+void ALearnCPPCharacter::RestartFromPauseCallback()
+{
+	if (SaveInstance)
+	{
+		SaveInstance->CurrentRound = 1;
+		UGameplayStatics::SaveGameToSlot(SaveInstance,SlotName,0);
+	}
+
+	UGameplayStatics::OpenLevel(GetWorld(), FName(TEXT("FirstPersonExampleMap")));
+	PauseMenu->RemoveFromParent();
+	
+}
+
+void ALearnCPPCharacter::Pause()
+{
+	UGameplayStatics::SetGamePaused(GetWorld(), true);
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->bShowMouseCursor = true;
+
+	if (PauseClass)
+	{
+		PauseMenu = CreateWidget<UPauseWidget>(GetWorld(), PauseClass);
+		if (PauseMenu)
+		{
+			PauseMenu->AddToViewport();
+
+			if (PauseMenu->ContinueButton)
+			{
+				FScriptDelegate scriptDelegate;
+				scriptDelegate.BindUFunction(this, FName(TEXT("Continue")));
+				PauseMenu->ContinueButton->OnClicked.Add(scriptDelegate);
+			}
+
+
+			if (PauseMenu->RestartButton)
+			{
+				FScriptDelegate scriptDelegate;
+				scriptDelegate.BindUFunction(this, FName(TEXT("RestartFromPauseCallback")));
+				PauseMenu->RestartButton->OnClicked.Add(scriptDelegate);
+			}
+
+			if (PauseMenu->ExitButton)
+			{
+				FScriptDelegate scriptDelegate;
+				scriptDelegate.BindUFunction(this, FName(TEXT("ExitCallback")));
+				PauseMenu->ExitButton->OnClicked.Add(scriptDelegate);
+			}
+		}
+	}
+}
 
 bool ALearnCPPCharacter::EnableTouchscreenMovement(class UInputComponent* PlayerInputComponent)
 {
@@ -400,13 +633,53 @@ bool ALearnCPPCharacter::EnableTouchscreenMovement(class UInputComponent* Player
 		//PlayerInputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ALearnCPPCharacter::TouchUpdate);
 		return true;
 	}
-	
+
 	return false;
 }
+
+/* Chapter 4 */
+void ALearnCPPCharacter::SprintTickCallback()
+{
+	if (HUD && HUD->StaminaBar)
+	{
+		float newStamina = HUD->StaminaBar->Percent + StaminaRecharge;
+		//三元表达式
+		HUD->StaminaBar->SetPercent(newStamina > 1 ? 1 : newStamina);
+	}
+}
+/* Chapter 4 */
 
 void ALearnCPPCharacter::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
 	ZoomTimeline.TickTimeline(DeltaSeconds);
+
+	/* Chapter 4 */
+	if (!IsSprinting)
+	{
+		FLatentActionInfo LatentInfo;
+		LatentInfo.Linkage = 0;
+		LatentInfo.CallbackTarget = this;
+		LatentInfo.ExecutionFunction = "SprintTickCallback";
+		LatentInfo.UUID = __LINE__;
+		UKismetSystemLibrary::Delay(GetWorld(), 0.2f, LatentInfo);
+	}
+	/* Chapter 4 */
+}
+
+float ALearnCPPCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	if (HUD && HUD->HealthBar)
+	{
+		IsLose = HUD->HealthBar->Percent <= DamageAmount;
+		float newHealth = IsLose ? 0 : HUD->HealthBar->Percent - DamageAmount;
+		HUD->HealthBar->SetPercent(newHealth);
+		if (IsLose)
+		{
+			EndGame();
+		}
+	}
+	return HUD->HealthBar->Percent;
 }

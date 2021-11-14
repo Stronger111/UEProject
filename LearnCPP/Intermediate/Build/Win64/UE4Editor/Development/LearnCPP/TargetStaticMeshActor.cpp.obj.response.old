@@ -231,8 +231,8 @@
 /I Editor\Kismet\Public
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\ClothingSystemRuntimeInterface
 /I Runtime\ClothingSystemRuntimeInterface\Public
-/I D:\Project\GitHubProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Inc\LearnCPP
-/I D:\Project\GitHubProject\UEProject\LearnCPP\Source
+/I D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Inc\LearnCPP
+/I D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Source
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\AugmentedReality
 /I Runtime\AugmentedReality\Public
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\MRMesh
@@ -260,18 +260,18 @@
 /I ThirdParty\PhysX3\APEX_1.4\shared\general\RenderDebug\public
 /I ThirdParty\PhysX3\APEX_1.4\shared\general\PairFilter\include
 /I ThirdParty\PhysX3\APEX_1.4\shared\internal\include
-/I D:\SoftWare\VS2017\VC\Tools\MSVC\14.16.27023\INCLUDE
-/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\include\um"
-/I "D:\Windows Kits\10\include\10.0.17763.0\ucrt"
-/I "D:\Windows Kits\10\include\10.0.17763.0\shared"
-/I "D:\Windows Kits\10\include\10.0.17763.0\um"
-/I "D:\Windows Kits\10\include\10.0.17763.0\winrt"
-/FI"D:\Project\GitHubProject\UEProject\LearnCPP\Intermediate\Build\Win64\LearnCPPEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Yu"D:\Project\GitHubProject\UEProject\LearnCPP\Intermediate\Build\Win64\LearnCPPEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"D:\Project\GitHubProject\UEProject\LearnCPP\Intermediate\Build\Win64\LearnCPPEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-"D:\Project\GitHubProject\UEProject\LearnCPP\Source\LearnCPP\TargetStaticMeshActor.cpp"
-/FI"D:\Project\GitHubProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Development\LearnCPP\Definitions.LearnCPP.h"
-/Fo"D:\Project\GitHubProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Development\LearnCPP\TargetStaticMeshActor.cpp.obj"
+/I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\INCLUDE"
+/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"
+/FI"D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\LearnCPPEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Yu"D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\LearnCPPEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\LearnCPPEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+"D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Source\LearnCPP\TargetStaticMeshActor.cpp"
+/FI"D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Development\LearnCPP\Definitions.LearnCPP.h"
+/Fo"D:\Project\GithubProject\UEProject\UEProject\LearnCPP\Intermediate\Build\Win64\UE4Editor\Development\LearnCPP\TargetStaticMeshActor.cpp.obj"
 /TP
 /GR-
 /W4

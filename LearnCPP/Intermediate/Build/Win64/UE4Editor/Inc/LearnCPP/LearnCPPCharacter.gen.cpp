@@ -21,8 +21,12 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	HEADMOUNTEDDISPLAY_API UClass* Z_Construct_UClass_UMotionControllerComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UPawnNoiseEmitterComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	LEARNCPP_API UClass* Z_Construct_UClass_UMyUserWidget_NoRegister();
+	LEARNCPP_API UClass* Z_Construct_UClass_URoundTransWidget_NoRegister();
+	LEARNCPP_API UClass* Z_Construct_UClass_ULoseMenuWidget_NoRegister();
+	LEARNCPP_API UClass* Z_Construct_UClass_UPauseWidget_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	LEARNCPP_API UClass* Z_Construct_UClass_ALearnCPPProjectile_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
@@ -36,13 +40,83 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 		P_THIS->DoZoom(Z_Param_FieldOfView);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(ALearnCPPCharacter::execRestartFromPauseCallback)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->RestartFromPauseCallback();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ALearnCPPCharacter::execContinue)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->Continue();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ALearnCPPCharacter::execExitCallback)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ExitCallback();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ALearnCPPCharacter::execRestartCallback)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->RestartCallback();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ALearnCPPCharacter::execSprintTickCallback)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SprintTickCallback();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ALearnCPPCharacter::execSprintDrain)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SprintDrain();
+		P_NATIVE_END;
+	}
 	void ALearnCPPCharacter::StaticRegisterNativesALearnCPPCharacter()
 	{
 		UClass* Class = ALearnCPPCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "Continue", &ALearnCPPCharacter::execContinue },
 			{ "DoZoom", &ALearnCPPCharacter::execDoZoom },
+			{ "ExitCallback", &ALearnCPPCharacter::execExitCallback },
+			{ "RestartCallback", &ALearnCPPCharacter::execRestartCallback },
+			{ "RestartFromPauseCallback", &ALearnCPPCharacter::execRestartFromPauseCallback },
+			{ "SprintDrain", &ALearnCPPCharacter::execSprintDrain },
+			{ "SprintTickCallback", &ALearnCPPCharacter::execSprintTickCallback },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ALearnCPPCharacter_Continue_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ALearnCPPCharacter_Continue_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ALearnCPPCharacter_Continue_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ALearnCPPCharacter, nullptr, "Continue", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ALearnCPPCharacter_Continue_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ALearnCPPCharacter_Continue_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ALearnCPPCharacter_Continue()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ALearnCPPCharacter_Continue_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics
 	{
@@ -73,6 +147,118 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ALearnCPPCharacter_DoZoom_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ALearnCPPCharacter_ExitCallback_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ALearnCPPCharacter_ExitCallback_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ALearnCPPCharacter_ExitCallback_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ALearnCPPCharacter, nullptr, "ExitCallback", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ALearnCPPCharacter_ExitCallback_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ALearnCPPCharacter_ExitCallback_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ALearnCPPCharacter_ExitCallback()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ALearnCPPCharacter_ExitCallback_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ALearnCPPCharacter_RestartCallback_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ALearnCPPCharacter_RestartCallback_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "/*Chapter 4*/" },
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+		{ "ToolTip", "Chapter 4" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ALearnCPPCharacter_RestartCallback_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ALearnCPPCharacter, nullptr, "RestartCallback", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ALearnCPPCharacter_RestartCallback_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ALearnCPPCharacter_RestartCallback_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ALearnCPPCharacter_RestartCallback()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ALearnCPPCharacter_RestartCallback_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ALearnCPPCharacter_RestartFromPauseCallback_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ALearnCPPCharacter_RestartFromPauseCallback_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ALearnCPPCharacter_RestartFromPauseCallback_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ALearnCPPCharacter, nullptr, "RestartFromPauseCallback", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ALearnCPPCharacter_RestartFromPauseCallback_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ALearnCPPCharacter_RestartFromPauseCallback_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ALearnCPPCharacter_RestartFromPauseCallback()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ALearnCPPCharacter_RestartFromPauseCallback_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ALearnCPPCharacter_SprintDrain_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ALearnCPPCharacter_SprintDrain_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ALearnCPPCharacter_SprintDrain_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ALearnCPPCharacter, nullptr, "SprintDrain", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ALearnCPPCharacter_SprintDrain_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ALearnCPPCharacter_SprintDrain_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ALearnCPPCharacter_SprintDrain()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ALearnCPPCharacter_SprintDrain_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ALearnCPPCharacter_SprintTickCallback_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ALearnCPPCharacter_SprintTickCallback_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ALearnCPPCharacter_SprintTickCallback_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ALearnCPPCharacter, nullptr, "SprintTickCallback", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ALearnCPPCharacter_SprintTickCallback_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ALearnCPPCharacter_SprintTickCallback_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ALearnCPPCharacter_SprintTickCallback()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ALearnCPPCharacter_SprintTickCallback_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -120,9 +306,25 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_L_MotionController;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PawnNoiseEmitter_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_PawnNoiseEmitter;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WidgetClass_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_WidgetClass;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoundTransClass_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_RoundTransClass;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_LoseMenuClass_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_LoseMenuClass;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PauseClass_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_PauseClass;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BaseTurnRate_MetaData[];
 #endif
@@ -161,7 +363,13 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_LearnCPP,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ALearnCPPCharacter_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ALearnCPPCharacter_Continue, "Continue" }, // 3488939959
 		{ &Z_Construct_UFunction_ALearnCPPCharacter_DoZoom, "DoZoom" }, // 4220430720
+		{ &Z_Construct_UFunction_ALearnCPPCharacter_ExitCallback, "ExitCallback" }, // 2315858464
+		{ &Z_Construct_UFunction_ALearnCPPCharacter_RestartCallback, "RestartCallback" }, // 4227708490
+		{ &Z_Construct_UFunction_ALearnCPPCharacter_RestartFromPauseCallback, "RestartFromPauseCallback" }, // 1547273207
+		{ &Z_Construct_UFunction_ALearnCPPCharacter_SprintDrain, "SprintDrain" }, // 2919104432
+		{ &Z_Construct_UFunction_ALearnCPPCharacter_SprintTickCallback, "SprintTickCallback" }, // 1924122238
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALearnCPPCharacter_Statics::Class_MetaDataParams[] = {
@@ -254,12 +462,42 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_L_MotionController = { "L_MotionController", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALearnCPPCharacter, L_MotionController), Z_Construct_UClass_UMotionControllerComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_L_MotionController_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_L_MotionController_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PawnNoiseEmitter_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "LearnCPPCharacter" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PawnNoiseEmitter = { "PawnNoiseEmitter", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALearnCPPCharacter, PawnNoiseEmitter), Z_Construct_UClass_UPawnNoiseEmitterComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PawnNoiseEmitter_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PawnNoiseEmitter_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_WidgetClass_MetaData[] = {
 		{ "Category", "UI" },
 		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
 	};
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_WidgetClass = { "WidgetClass", nullptr, (EPropertyFlags)0x0014000000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALearnCPPCharacter, WidgetClass), Z_Construct_UClass_UMyUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_WidgetClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_WidgetClass_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_RoundTransClass_MetaData[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_RoundTransClass = { "RoundTransClass", nullptr, (EPropertyFlags)0x0014000000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALearnCPPCharacter, RoundTransClass), Z_Construct_UClass_URoundTransWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_RoundTransClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_RoundTransClass_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_LoseMenuClass_MetaData[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_LoseMenuClass = { "LoseMenuClass", nullptr, (EPropertyFlags)0x0014000000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALearnCPPCharacter, LoseMenuClass), Z_Construct_UClass_ULoseMenuWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_LoseMenuClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_LoseMenuClass_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PauseClass_MetaData[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "LearnCPPCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PauseClass = { "PauseClass", nullptr, (EPropertyFlags)0x0014000000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALearnCPPCharacter, PauseClass), Z_Construct_UClass_UPauseWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PauseClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PauseClass_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_BaseTurnRate_MetaData[] = {
 		{ "Category", "Camera" },
@@ -336,7 +574,11 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_FirstPersonCameraComponent,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_R_MotionController,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_L_MotionController,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PawnNoiseEmitter,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_WidgetClass,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_RoundTransClass,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_LoseMenuClass,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_PauseClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_BaseTurnRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_BaseLookUpRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALearnCPPCharacter_Statics::NewProp_GunOffset,
@@ -372,7 +614,7 @@ void EmptyLinkFunctionForGeneratedCodeLearnCPPCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ALearnCPPCharacter, 2109099147);
+	IMPLEMENT_CLASS(ALearnCPPCharacter, 1878484137);
 	template<> LEARNCPP_API UClass* StaticClass<ALearnCPPCharacter>()
 	{
 		return ALearnCPPCharacter::StaticClass();

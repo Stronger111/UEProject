@@ -15,6 +15,9 @@ class UCameraComponent;
 class UMotionControllerComponent;
 class UAnimMontage;
 class USoundBase;
+class URoundTransWidget;
+class ULoseMenuWidget;
+class UPauseWidget;
 
 UCLASS(config=Game)
 class ALearnCPPCharacter : public ACharacter
@@ -53,19 +56,75 @@ class ALearnCPPCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UMotionControllerComponent* L_MotionController;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPawnNoiseEmitterComponent* PawnNoiseEmitter;
+
 	UMyUserWidget* HUD;
+
+	URoundTransWidget* RoundTrans;
+
+	ULoseMenuWidget* LoseMenu;
+
+	UPauseWidget* PauseMenu;
 	int Ammo;
-	void SetAmmo(int ammo);
 	int Killed;
+
+	/*Chapter 4*/
+	int Target;
+	bool IsSprinting;
+	float StaminaCost;
+	//回复体力值
+	float StaminaRecharge;
+	FTimerHandle SprintTimerHandle;
+
+	UFUNCTION()
+	void SprintDrain();
+
+	UFUNCTION()
+	void SprintTickCallback();
+	/*Chapter 4*/
+	UFUNCTION()
+	void RestartCallback();
+	UFUNCTION()
+	void ExitCallback();
+	bool IsLose;
+
+	FString SlotName;
+	class USaveSystem* SaveInstance;
+
+	void Pause();
+
+	UFUNCTION()
+	void Continue();
+
+	UFUNCTION()
+	void RestartFromPauseCallback();
 public:
 	ALearnCPPCharacter();
     
 	UPROPERTY(EditDefaultsOnly, Category = UI)
 	TSubclassOf<UMyUserWidget> WidgetClass;
 
+	
 	int GetKilled();
 	void SetKilled(int killed);
+	void SetAmmo(int ammo);
+	int GetAmmo();
 
+	void SetTarget(int target);
+	int GetTarget();
+	void EndGame();
+
+	UPROPERTY(EditDefaultsOnly, Category = UI)
+    TSubclassOf<URoundTransWidget> RoundTransClass;
+
+	int CurrentEnemyNumber;
+
+	UPROPERTY(EditDefaultsOnly, Category = UI)
+	TSubclassOf<ULoseMenuWidget> LoseMenuClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = UI)
+	TSubclassOf<UPauseWidget> PauseClass;
 protected:
 	virtual void BeginPlay();
 
@@ -174,6 +233,9 @@ public:
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
 	virtual void Tick(float DeltaSeconds) override;
+
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
+
 
 };
 

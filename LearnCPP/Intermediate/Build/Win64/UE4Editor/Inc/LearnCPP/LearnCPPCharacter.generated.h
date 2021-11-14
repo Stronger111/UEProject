@@ -13,18 +13,30 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define LEARNCPP_LearnCPPCharacter_generated_h
 
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_SPARSE_DATA
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_RPC_WRAPPERS \
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_SPARSE_DATA
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_RPC_WRAPPERS \
  \
-	DECLARE_FUNCTION(execDoZoom);
+	DECLARE_FUNCTION(execDoZoom); \
+	DECLARE_FUNCTION(execRestartFromPauseCallback); \
+	DECLARE_FUNCTION(execContinue); \
+	DECLARE_FUNCTION(execExitCallback); \
+	DECLARE_FUNCTION(execRestartCallback); \
+	DECLARE_FUNCTION(execSprintTickCallback); \
+	DECLARE_FUNCTION(execSprintDrain);
 
 
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execDoZoom);
+	DECLARE_FUNCTION(execDoZoom); \
+	DECLARE_FUNCTION(execRestartFromPauseCallback); \
+	DECLARE_FUNCTION(execContinue); \
+	DECLARE_FUNCTION(execExitCallback); \
+	DECLARE_FUNCTION(execRestartCallback); \
+	DECLARE_FUNCTION(execSprintTickCallback); \
+	DECLARE_FUNCTION(execSprintDrain);
 
 
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_INCLASS_NO_PURE_DECLS \
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesALearnCPPCharacter(); \
 	friend struct Z_Construct_UClass_ALearnCPPCharacter_Statics; \
@@ -33,7 +45,7 @@ public: \
 	DECLARE_SERIALIZER(ALearnCPPCharacter)
 
 
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_INCLASS \
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_INCLASS \
 private: \
 	static void StaticRegisterNativesALearnCPPCharacter(); \
 	friend struct Z_Construct_UClass_ALearnCPPCharacter_Statics; \
@@ -42,7 +54,7 @@ public: \
 	DECLARE_SERIALIZER(ALearnCPPCharacter)
 
 
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_STANDARD_CONSTRUCTORS \
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ALearnCPPCharacter(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ALearnCPPCharacter) \
@@ -55,7 +67,7 @@ private: \
 public:
 
 
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_ENHANCED_CONSTRUCTORS \
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ALearnCPPCharacter(ALearnCPPCharacter&&); \
@@ -66,7 +78,7 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ALearnCPPCharacter)
 
 
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_PRIVATE_PROPERTY_OFFSET \
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__Mesh1P() { return STRUCT_OFFSET(ALearnCPPCharacter, Mesh1P); } \
 	FORCEINLINE static uint32 __PPO__FP_Gun() { return STRUCT_OFFSET(ALearnCPPCharacter, FP_Gun); } \
 	FORCEINLINE static uint32 __PPO__FP_MuzzleLocation() { return STRUCT_OFFSET(ALearnCPPCharacter, FP_MuzzleLocation); } \
@@ -74,30 +86,31 @@ public: \
 	FORCEINLINE static uint32 __PPO__VR_MuzzleLocation() { return STRUCT_OFFSET(ALearnCPPCharacter, VR_MuzzleLocation); } \
 	FORCEINLINE static uint32 __PPO__FirstPersonCameraComponent() { return STRUCT_OFFSET(ALearnCPPCharacter, FirstPersonCameraComponent); } \
 	FORCEINLINE static uint32 __PPO__R_MotionController() { return STRUCT_OFFSET(ALearnCPPCharacter, R_MotionController); } \
-	FORCEINLINE static uint32 __PPO__L_MotionController() { return STRUCT_OFFSET(ALearnCPPCharacter, L_MotionController); }
+	FORCEINLINE static uint32 __PPO__L_MotionController() { return STRUCT_OFFSET(ALearnCPPCharacter, L_MotionController); } \
+	FORCEINLINE static uint32 __PPO__PawnNoiseEmitter() { return STRUCT_OFFSET(ALearnCPPCharacter, PawnNoiseEmitter); }
 
 
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_19_PROLOG
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_GENERATED_BODY_LEGACY \
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_PROLOG
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_PRIVATE_PROPERTY_OFFSET \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_SPARSE_DATA \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_RPC_WRAPPERS \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_INCLASS \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_STANDARD_CONSTRUCTORS \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_PRIVATE_PROPERTY_OFFSET \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_SPARSE_DATA \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_RPC_WRAPPERS \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_INCLASS \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_GENERATED_BODY \
+#define LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_PRIVATE_PROPERTY_OFFSET \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_SPARSE_DATA \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_INCLASS_NO_PURE_DECLS \
-	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_22_ENHANCED_CONSTRUCTORS \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_PRIVATE_PROPERTY_OFFSET \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_SPARSE_DATA \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_INCLASS_NO_PURE_DECLS \
+	LearnCPP_Source_LearnCPP_LearnCPPCharacter_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

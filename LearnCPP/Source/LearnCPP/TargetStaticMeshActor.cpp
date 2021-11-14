@@ -11,7 +11,8 @@
 void ATargetStaticMeshActor::NotifyHitCallback()
 {
 	UStaticMeshComponent* staticMesh = GetStaticMeshComponent();
-	staticMesh->SetMaterial(0,Original);
+	if(staticMesh)
+	   staticMesh->SetMaterial(0,Original);
 }
 
 void ATargetStaticMeshActor::TickCallback()
@@ -34,7 +35,8 @@ void ATargetStaticMeshActor::NotifyHit(UPrimitiveComponent * MyComp, AActor * Ot
 	if (projectile!=nullptr)
 	{
 		UStaticMeshComponent* staticMesh=GetStaticMeshComponent();
-		staticMesh->SetMaterial(0,TargetRed);
+		if(staticMesh)
+			staticMesh->SetMaterial(0, TargetRed);
 
 		if (IsPrimed)
 		{
@@ -45,7 +47,17 @@ void ATargetStaticMeshActor::NotifyHit(UPrimitiveComponent * MyComp, AActor * Ot
 			if (character)
 			{
 				ALearnCPPCharacter* LearnCppCharacter = Cast<ALearnCPPCharacter>(character);
-				LearnCppCharacter->SetKilled(LearnCppCharacter->GetKilled()+1);
+				if(LearnCppCharacter)
+				   LearnCppCharacter->SetKilled(LearnCppCharacter->GetKilled()+1);
+				//消灭足够的敌人
+				if (LearnCppCharacter->GetKilled() >= LearnCppCharacter->GetTarget())
+				{
+					LearnCppCharacter->EndGame();
+				}
+				else
+				{
+
+				}
 			}
 
 			Destroy();
