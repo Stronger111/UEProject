@@ -29,13 +29,32 @@ AFPSBlackHole::AFPSBlackHole()
 void AFPSBlackHole::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	InnerSphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AFPSBlackHole::OverlappInnerSphere);
 }
 
 // Called every frame
 void AFPSBlackHole::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	TArray<UPrimitiveComponent*> OverlappingComps;
+	OuterSphereComponent->GetOverlappingComponents(OverlappingComps);
+	for (int32 i = 0; i < OverlappingComps.Num(); i++)
+	{
+		//添加引力
+		UPrimitiveComponent* PrimComp = OverlappingComps[i];
+		const float SphereRadius = OuterSphereComponent->GetScaledSphereRadius();
+		const float ForceStrength = -2000;
+		PrimComp->AddRadialForce(GetActorLocation(), SphereRadius, ForceStrength,ERadialImpulseFalloff::RIF_Constant,true);
+	}
 
 }
+
+void AFPSBlackHole::OverlappInnerSphere(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor)
+	{
+		OtherActor->Destroy();
+	}
+}
+
 
