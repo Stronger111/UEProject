@@ -34,7 +34,7 @@ protected:
 	bool bWantsToZoom;
 
 	UPROPERTY(EditDefaultsOnly, Category="Player")
-	float ZoomedFOV; //ÊÓÒ°
+	float ZoomedFOV; //è§†é‡Ž
 	float DefaultFOV;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
@@ -42,6 +42,17 @@ protected:
 
 	void BeginZoom();
 	void EndZoom();
+
+	class ASWeapon* CurrentWeapon;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	TSubclassOf<class ASWeapon> StartWeaponClass;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "Player")
+	FName WeaponAttachSocketName;
+
+	void Fire();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

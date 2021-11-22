@@ -20,7 +20,7 @@ void ASProjectileWeapon::Fire()
 		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		if (ProjectileClass)
 		{
-			//Éú³ÉÊÖÀ×
+			//ç”Ÿæˆæ‰‹é›·
 			GetWorld()->SpawnActor<AActor>(ProjectileClass, MuzzleLocation, EyeRotator,
 				SpawnParams);
 		}
