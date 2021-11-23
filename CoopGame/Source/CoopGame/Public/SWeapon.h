@@ -42,6 +42,9 @@ protected:
 	class UParticleSystem* TracerEffect;
 
 	void PlayFireEffects(FVector TraceEnd);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+	TSubclassOf<class UCameraShakeBase> FireCamShake;
 public:	
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
 	virtual void Fire();
