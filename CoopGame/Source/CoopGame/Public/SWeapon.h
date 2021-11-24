@@ -36,7 +36,10 @@ protected:
 	class UParticleSystem* MuzzleEffect;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	class UParticleSystem* ImpactEffect;
+	class UParticleSystem* DefaultImpactEffect;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	class UParticleSystem* FleshImpactEffect;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	class UParticleSystem* TracerEffect;
@@ -47,7 +50,7 @@ protected:
 	TSubclassOf<class UCameraShakeBase> FireCamShake;
 public:	
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
-	virtual void Fire();
+	void Fire();
 	// Called every frame
 	//virtual void Tick(float DeltaTime) override;
 

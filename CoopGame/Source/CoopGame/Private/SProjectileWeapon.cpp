@@ -5,7 +5,7 @@
 #include "Engine/World.h"
 #include "Components/SkeletalMeshComponent.h"
 
-void ASProjectileWeapon::Fire()
+void ASProjectileWeapon::ProjectileFire()
 {
 	AActor* MyOwner = GetOwner();
 	if (MyOwner)
