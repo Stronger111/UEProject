@@ -69,7 +69,7 @@ void ASWeapon::Fire()
 				Hit, MyOwner->GetInstigatorController(),this, DamageType);
 
 			//物理材质
-			SurfaceType = UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
+			SurfaceType = UGameplayStatics::GetSurfaceType(Hit);
 
 			UParticleSystem* SelectedEffect = nullptr;
 			switch (SurfaceType)
@@ -85,7 +85,7 @@ void ASWeapon::Fire()
 
 			if (SelectedEffect)
 			{
-				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DefaultImpactEffect, Hit.ImpactPoint
+				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), SelectedEffect, Hit.ImpactPoint
 					, Hit.ImpactNormal.Rotation());
 			}
 
