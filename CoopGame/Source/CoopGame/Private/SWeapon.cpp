@@ -32,13 +32,16 @@ ASWeapon::ASWeapon()
 
 	MuzzleSocketName = "MuzzleSocket";
 	TracerTargetName = "Target";
+
+	BaseDamage = 20;
+	RateOfFire = 600;
 }
 
 // Called when the game starts or when spawned
 void ASWeapon::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	TimeBetweenShots = 60 / RateOfFire;
 }
 
 void ASWeapon::Fire()
@@ -62,14 +65,19 @@ void ASWeapon::Fire()
 		FVector TracerEndPoint = TraceEnd;
 
 		EPhysicalSurface SurfaceType = SurfaceType_Default;
-		if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, ECC_Visibility, QueryParams))
+		//自定义碰撞通道
+		if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams))
 		{
 			AActor* HitActor = Hit.GetActor();
-			UGameplayStatics::ApplyPointDamage(HitActor,20, EyeRotator.Vector(), 
-				Hit, MyOwner->GetInstigatorController(),this, DamageType);
-
+			float ActualDamage = BaseDamage;
 			//物理材质
 			SurfaceType = UGameplayStatics::GetSurfaceType(Hit);
+			if (SurfaceType== SURFACE_FLESHVULNERABLE)
+			{
+				ActualDamage *= 4;
+			}
+			UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, EyeRotator.Vector(),
+				Hit, MyOwner->GetInstigatorController(),this, DamageType);
 
 			UParticleSystem* SelectedEffect = nullptr;
 			switch (SurfaceType)
@@ -97,6 +105,20 @@ void ASWeapon::Fire()
 		
 		PlayFireEffects(TracerEndPoint);
 	}
+
+	LastFireTime = GetWorld()->TimeSeconds;
+}
+
+void ASWeapon::StartFire()
+{
+	float FirstDelay = FMath::Max(0.0f,LastFireTime+TimeBetweenShots-GetWorld()->TimeSeconds);
+	GetWorldTimerManager().SetTimer(TimerHandle_TimeBetweenShots,this,&ASWeapon::Fire,TimeBetweenShots,true, FirstDelay);
+
+}
+
+void ASWeapon::StopFire()
+{
+	GetWorldTimerManager().ClearTimer(TimerHandle_TimeBetweenShots);
 }
 
 void ASWeapon::PlayFireEffects(FVector TraceEnd)
