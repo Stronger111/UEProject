@@ -51,14 +51,16 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	float BaseDamage;
-
+	/// <summary>
+	/// ¾ä±ú
+	/// </summary>
 	FTimerHandle TimerHandle_TimeBetweenShots;
 	float LastFireTime;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-	float RateOfFire;
+	float RateOfFire;  //shots /per minute
 
-	float TimeBetweenShots;  //Seconds
+	float TimeBetweenShots;  //Second
 public:	
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
 	void Fire();

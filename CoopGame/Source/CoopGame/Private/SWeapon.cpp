@@ -105,7 +105,7 @@ void ASWeapon::Fire()
 		
 		PlayFireEffects(TracerEndPoint);
 	}
-
+	//上一帧开火的时间
 	LastFireTime = GetWorld()->TimeSeconds;
 }
 
