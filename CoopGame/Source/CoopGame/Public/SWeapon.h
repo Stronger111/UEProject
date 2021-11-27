@@ -58,7 +58,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	float RateOfFire;
 
-	float TimeBetweenShots;
+	float TimeBetweenShots;  //Seconds
 public:	
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
 	void Fire();
