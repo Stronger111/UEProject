@@ -10,6 +10,19 @@ class USkeletalMeshComponent;
 class UDamageType;
 class UParticleSystem;
 
+USTRUCT()
+struct FHitScanTrace
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY()
+	FVector_NetQuantize TraceTo;
+	UPROPERTY()
+	uint8 BurstCounter;
+	UPROPERTY()
+	TEnumAsByte<EPhysicalSurface> SurfaceType; //TEnumAsByte 网络同步相关
+};
+
 UCLASS()
 class COOPGAME_API ASWeapon : public AActor
 {
@@ -68,6 +81,16 @@ protected:
 	// Derived from RateOfFire
 	float TimeBetweenShots;
 
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerFire();
+
+	UPROPERTY(ReplicatedUsing = OnRep_HitScanTrace)
+	FHitScanTrace HitScanTrace;
+
+	UFUNCTION()
+	void OnRep_HitScanTrace();
+
+	void PlayImpactEffects(EPhysicalSurface SurfaceType,FVector ImpactPoint);
 public:	
 
 	void StartFire();
