@@ -10,7 +10,6 @@
 #include "CoopGame.h"
 #include "TimerManager.h"
 #include "Net/UnrealNetwork.h"
-#include "Chaos\ChaosEngineInterface.h"
 
 static int32 DebugWeaponDrawing = 0;
 FAutoConsoleVariableRef CVARDebugWeaponDrawing(
@@ -75,7 +74,7 @@ void ASWeapon::Fire()
 
 		// Particle "Target" parameter
 		FVector TracerEndPoint = TraceEnd;
-		EPhysicalSurface SurfaceType= EPhysicalSurface::SurfaceType_Default;
+		EPhysicalSurface SurfaceType=SurfaceType_Default;
 
 		FHitResult Hit;
 		if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams))
@@ -83,8 +82,8 @@ void ASWeapon::Fire()
 			// Blocking hit! Process damage
 			AActor* HitActor = Hit.GetActor();
 
-			//EPhysicalSurface SurfaceType = UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
-			SurfaceType = UGameplayStatics::GetSurfaceType(Hit);
+			SurfaceType = UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
+			//SurfaceType = UGameplayStatics::GetSurfaceType(Hit);
 			float ActualDamage = BaseDamage;
 			if (SurfaceType == SURFACE_FLESHVULNERABLE)
 			{
