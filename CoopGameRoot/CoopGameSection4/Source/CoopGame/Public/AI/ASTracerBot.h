@@ -19,6 +19,19 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	class UStaticMeshComponent* MeshComp;
 
+	FVector GetNextPathPoint();
+
+	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
+	float MovementForce;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
+	float bUseVelocityChange;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
+	float RequiredDistanceToTarget;
+
+	FVector NextPathPoint;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
