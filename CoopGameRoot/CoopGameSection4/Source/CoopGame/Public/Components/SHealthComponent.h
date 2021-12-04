@@ -21,8 +21,11 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	UPROPERTY(Replicated, BlueprintReadOnly, Category = "HealthComponent")
+	UPROPERTY(ReplicatedUsing=OnRep_Health, BlueprintReadOnly, Category = "HealthComponent")
 	float Health;
+
+	UFUNCTION()
+	void OnRep_Health(float OldHealth);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HealthComponent")
 	float DefaultHealth;
@@ -35,4 +38,7 @@ public:
 	//virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 	FOnHealthChangedSignature OnHealthChanged;
+
+	UFUNCTION(BlueprintCallable, Category = "HealthComponent")
+	void Heal(float HealAmount);
 };

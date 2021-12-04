@@ -19,18 +19,58 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	class UStaticMeshComponent* MeshComp;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	class USHealthComponent* HealthComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	class USphereComponent* SphereComp;
+
+	class UMaterialInstanceDynamic* MatInst;
+
 	FVector GetNextPathPoint();
 
 	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
 	float MovementForce;
 
 	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
-	float bUseVelocityChange;
+	bool bUseVelocityChange;
 
 	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
 	float RequiredDistanceToTarget;
 
 	FVector NextPathPoint;
+
+	//¥Ú±¨
+	void SelfDestruct();
+
+	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
+	class UParticleSystem* ExplosionEffect;
+
+	bool bExploded;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
+	float ExplosionRadius;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
+	float ExplosionDamage;
+
+	FTimerHandle TimerHandle_SelfDamage;
+	void DamageSelf();
+	bool bStartSelfDestruction;
+
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
+	//…˘“Ù
+	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
+	class USoundCue* SelfDestructSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TracerBot")
+	class USoundCue* ExplodeSound;
+
+	UFUNCTION()
+	void OnCheckNearByBots();
+
+	int32 PowerLevel;
 
 protected:
 	// Called when the game starts or when spawned
@@ -40,6 +80,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION()
+	void HandleTakeDamage(USHealthComponent* OwnerHealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 	// Called to bind functionality to input
 	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
