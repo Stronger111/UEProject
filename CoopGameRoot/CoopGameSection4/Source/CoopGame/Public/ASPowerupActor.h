@@ -10,40 +10,50 @@ UCLASS()
 class COOPGAME_API AASPowerupActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AASPowerupActor();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Powerups")
-	float PowerupInterval;
+		float PowerupInterval;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Powerups")
-	int32 TotalNrOfTicks;
+		int32 TotalNrOfTicks;
 
 	FTimerHandle TimerHandle_PowerupTicks;
 
 	int32 TickProcessed;
-	 
+
 	UFUNCTION()
-	void OnTickPowerup();
+		void OnTickPowerup();
 
-protected:
+	UPROPERTY(ReplicatedUsing = OnRep_PowerupActive)
+		bool bIsPowerupActive;
+
+	UFUNCTION()
+	void OnRep_PowerupActive();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Powerups")
+	void OnPowerupStateChanged(bool bNewIsActive);
+//protected:
 	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	//virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	//virtual void Tick(float DeltaTime) override;
 
-	void AvtivatePowerup();
-
-	UFUNCTION(BlueprintImplementableEvent, Category= "Powerups")
-	void OnActivated();
+	void AvtivatePowerup(AActor* ActiveFor);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerups")
-	void OnPowerupTicked();
+	void OnActivated(AActor* ActiveFor);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Powerups")
+		void OnPowerupTicked();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerups")
 	void OnExpired();
+
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const;
 };

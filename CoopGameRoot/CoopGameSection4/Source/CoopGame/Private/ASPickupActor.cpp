@@ -7,6 +7,7 @@
 #include "Engine/World.h"
 #include "TimerManager.h"
 #include "ASPowerupActor.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 AASPickupActor::AASPickupActor()
@@ -22,6 +23,10 @@ AASPickupActor::AASPickupActor()
 	DecalComp->SetRelativeRotation(FRotator(90,0,0));
 	DecalComp->DecalSize = FVector(64,75,75);
 	DecalComp->SetupAttachment(RootComponent);
+
+	CooldownDuration = 10.0f;
+
+	SetReplicates(true);
 }
 
 void AASPickupActor::Respawn()
@@ -43,16 +48,19 @@ void AASPickupActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Respawn();
+	if (GetLocalRole()==ROLE_Authority)
+	{
+		Respawn();
+	}
 }
 
 void AASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
-	if (PowerUpInstance)
+	if (GetLocalRole() == ROLE_Authority&&PowerUpInstance)
 	{
-		PowerUpInstance->AvtivatePowerup();
+		PowerUpInstance->AvtivatePowerup(OtherActor);
 		PowerUpInstance = nullptr;
 
 		GetWorldTimerManager().SetTimer(TimerHandle_RespawnTimer,this,&AASPickupActor::Respawn,CooldownDuration);

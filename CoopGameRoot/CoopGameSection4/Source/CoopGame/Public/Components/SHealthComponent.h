@@ -21,6 +21,8 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	bool bIsDead;
+
 	UPROPERTY(ReplicatedUsing=OnRep_Health, BlueprintReadOnly, Category = "HealthComponent")
 	float Health;
 
@@ -34,6 +36,8 @@ protected:
 	void HandleTakeAnyDamage(AActor* DamagedActor,float Damage,const class UDamageType* DamageType,
 		class AController* InstigatedBy, AActor* DamageCauser);
 public:	
+
+	float GetHealth() const;
 	// Called every frame
 	//virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UPROPERTY(BlueprintAssignable, Category = "Events")

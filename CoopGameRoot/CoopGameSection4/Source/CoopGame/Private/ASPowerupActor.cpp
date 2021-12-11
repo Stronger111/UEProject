@@ -3,6 +3,7 @@
 
 #include "ASPowerupActor.h"
 #include "TimerManager.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 AASPowerupActor::AASPowerupActor()
@@ -11,6 +12,10 @@ AASPowerupActor::AASPowerupActor()
 	//PrimaryActorTick.bCanEverTick = true;
 	PowerupInterval = 0.0f;
 	TotalNrOfTicks = 0;
+	//道具激活状态
+	bIsPowerupActive = false;
+
+	SetReplicates(true);
 }
 
 void AASPowerupActor::OnTickPowerup()
@@ -20,18 +25,27 @@ void AASPowerupActor::OnTickPowerup()
 
 	if (TickProcessed>= TotalNrOfTicks)
 	{
+		//失效
 		OnExpired();
+		bIsPowerupActive = false;
+
+		OnRep_PowerupActive();
 
 		GetWorldTimerManager().ClearTimer(TimerHandle_PowerupTicks);
 	}
 }
 
-// Called when the game starts or when spawned
-void AASPowerupActor::BeginPlay()
+void AASPowerupActor::OnRep_PowerupActive()
 {
-	Super::BeginPlay();
-	
+	OnPowerupStateChanged(bIsPowerupActive);
 }
+
+// Called when the game starts or when spawned
+//void AASPowerupActor::BeginPlay()
+//{
+//	Super::BeginPlay();
+//	
+//}
 
 // Called every frame
 //void AASPowerupActor::Tick(float DeltaTime)
@@ -40,8 +54,13 @@ void AASPowerupActor::BeginPlay()
 //
 //}
 
-void AASPowerupActor::AvtivatePowerup()
+void AASPowerupActor::AvtivatePowerup(AActor* ActiveFor)
 {
+	OnActivated(ActiveFor);
+
+	bIsPowerupActive = true;
+	OnRep_PowerupActive();
+
 	if (PowerupInterval>0)
 	{
 		GetWorldTimerManager().SetTimer(TimerHandle_PowerupTicks,this,&AASPowerupActor::OnTickPowerup, PowerupInterval,true,0.0f);
@@ -49,5 +68,12 @@ void AASPowerupActor::AvtivatePowerup()
 	else {
 		OnTickPowerup();
 	}
+}
+
+void AASPowerupActor::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AASPowerupActor,bIsPowerupActive);
 }
 
