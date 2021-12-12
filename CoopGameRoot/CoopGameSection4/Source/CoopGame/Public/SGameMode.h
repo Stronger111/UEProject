@@ -40,6 +40,8 @@ private:
 
 protected:
 	void SetWaveState(EWaveState NewState);
+
+	void RestartDeadPlayers();
 public:
 	ASGameMode();
 
