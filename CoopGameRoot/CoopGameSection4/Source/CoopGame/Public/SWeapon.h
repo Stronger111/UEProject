@@ -80,6 +80,9 @@ protected:
 	
 	// Derived from RateOfFire
 	float TimeBetweenShots;
+	//
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon", meta = (ClampMin = 0.0f))
+	float BulletSpread;
 
 	UFUNCTION(Server, Reliable, WithValidation)
 	void ServerFire();

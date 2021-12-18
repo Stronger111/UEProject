@@ -16,6 +16,7 @@ USHealthComponent::USHealthComponent()
 	DefaultHealth = 100;
 	bIsDead = false;
 
+	TeamNum = 255;
 	SetIsReplicated(true);
 }
 
@@ -48,6 +49,12 @@ void USHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage, 
 	{
 		return;
 	}
+
+	if (DamagedActor!= DamageCauser&&IsFriendly(DamagedActor, DamageCauser))
+	{
+		return;
+	}
+
 	Health = FMath::Clamp(Health-Damage,0.0f,DefaultHealth);
 	UE_LOG(LogTemp,Log,TEXT("Health Changed: %s"), *FString::SanitizeFloat(Health));
 
@@ -77,6 +84,18 @@ void USHealthComponent::Heal(float HealAmount)
 	Health = FMath::Clamp(Health+ HealAmount,0.0f,DefaultHealth);
 	UE_LOG(LogTemp,Log,TEXT("Health Changed:%s (+%s)"),*FString::SanitizeFloat(Health), *FString::SanitizeFloat(HealAmount));
 	OnHealthChanged.Broadcast(this,Health,-HealAmount,nullptr,nullptr,nullptr);
+}
+
+bool USHealthComponent::IsFriendly(AActor* ActorA, AActor* ActorB)
+{
+	if (ActorA == nullptr || ActorB == nullptr)
+		return false;
+	USHealthComponent* HealthCompA = Cast<USHealthComponent>(ActorA->GetComponentByClass(USHealthComponent::StaticClass()));
+	USHealthComponent* HealthCompB = Cast<USHealthComponent>(ActorB->GetComponentByClass(USHealthComponent::StaticClass()));
+	if (HealthCompA == nullptr || HealthCompB == nullptr)
+		return false;
+
+	return HealthCompA->TeamNum== HealthCompB->TeamNum;
 }
 
 void USHealthComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
